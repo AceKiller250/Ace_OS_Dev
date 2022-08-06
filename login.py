@@ -7,7 +7,7 @@ from tqdm import tqdm
 from rich.traceback import install
 from rich.progress import Progress
 import subprocess
-
+from sys import platform
 #File location and locater
 pathname = os.path.dirname(sys.argv[0])
 
