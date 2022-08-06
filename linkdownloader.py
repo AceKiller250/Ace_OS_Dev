@@ -58,7 +58,7 @@ def copy_url(task_id: TaskID, url: str, path: str) -> None:
             if done_event.is_set():
                 return
     progress.console.log(f"Downloaded {path}")
-p
+
 
 def download(urls: Iterable[str], dest_dir: str):
     """Download multuple files to the given directory."""
