@@ -110,7 +110,17 @@ auth=firebase.auth()
 
 
 
-
+#Define clear console
+def consoleClr():
+    if platform == "linux" or platform == "linux2":
+        #linux
+        os.system("clear")
+    elif platform == "darwin":
+        # OS X
+        os.system("clear")
+    elif platform == "win32":
+        # Windows...
+        os.system("cls")
 
 
 
@@ -145,7 +155,7 @@ def resetpass():
     auth.send_password_reset_email(email)
     print("Success! If there was an Account associated with this email it will be sent a reset link. Check your inbox.")
     sleep(3)
-    os.system("cls")
+    consoleClr()
     menu()
 
 
@@ -156,7 +166,7 @@ def is_any_user_email_verified(accountinfo):
 #Login function
 
 def login():
-    os.system("cls")
+    consoleClr()
     while True:
         print("Login:")
         email=input("Enter email: ")
@@ -192,7 +202,7 @@ def login():
             if answer == "yes" or answer == "y":
                 resetpass()
             elif answer == "n" or answer == "no":
-                os.system("cls")
+                consoleClr()
             continue
         return
 
@@ -202,7 +212,7 @@ def login():
 
 #Signup Function
 def signup():
-    os.system("cls")
+    consoleClr()
     while True:
         print("Signup:")
         email = input("Enter email: ")
@@ -236,15 +246,15 @@ def menu():
         ans = input("> ")
 
         if ans == 'Login' or ans == 'login' or ans == "l":
-            os.system("cls")
+            consoleClr()
             login()
             break
         elif ans == 'Signup' or ans == 'signup' or ans == "s":
-            os.system("cls")
+            consoleClr()
             signup()
             break
         elif ans == 'Reset Password' or ans == 'Reset' or ans == 'r':
-            os.system("cls")
+            consoleClr()
             resetpass()
             continue
 
@@ -260,15 +270,15 @@ while True:
     ans = input("> ")
 
     if ans == 'Login' or ans == 'login' or ans == "l":
-        os.system("cls")
+        consoleClr()
         login()
         break
     elif ans == 'Signup' or ans == 'signup' or ans == "s":
-        os.system("cls")
+        consoleClr()
         signup()
         break
     elif ans == 'Reset Password' or ans == 'Reset' or ans == 'r':
-        os.system("cls")
+        consoleClr()
         resetpass()
         continue
 
@@ -302,6 +312,6 @@ while True:
 #        if answer == "yes" or answer == "y":
 #            resetpass()
 #        elif answer == "n" or answer == "no":
-#            os.system("cls")
+#            consoleClr()
 #        continue
 #    return
