@@ -12,19 +12,14 @@ pyinstaller = str("pyinstaller --onefile ")
 
 
 
-def choosecompile():
-    subprocess.call(pyinstaller + "choose.py")
-def logincompile():
-    subprocess.call(pyinstaller + "login.py")
-def calccompile():
-    subprocess.call(pyinstaller + "calcv3.py")
+
+
 
 
 print("Are you sure your ready to compile?[y/n]")
 ans = input("> ")
 if ans == "Y" or ans == "y":
-    choosecompile()
-    calccompile()
+    os.system(pyinstaller + "login.py")
 else:
     print("Alright have fun coding")
     sys.exit()

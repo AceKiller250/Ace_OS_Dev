@@ -77,7 +77,7 @@ while True:
                 print("Not avalible yet. Sorry! :(")
                 
             elif userchoice == "Dino Game" or userchoice == "Dino":
-                from main import dinostart
+                from dino_main import dinostart
                 print("Booting Dino game...")
                 dino = (foldername + "\main.exe")
                 os.startfile(dino)

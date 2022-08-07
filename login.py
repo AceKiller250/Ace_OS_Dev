@@ -1,3 +1,4 @@
+#Import requirements
 import pyrebase
 import os
 import sys
@@ -8,6 +9,14 @@ from rich.traceback import install
 from rich.progress import Progress
 import subprocess
 from sys import platform
+import socket
+import webbrowser
+from time import sleep
+import sys
+import smtplib
+import socket
+import json
+
 #File location and locater
 pathname = os.path.dirname(sys.argv[0])
 
@@ -281,6 +290,39 @@ while True:
         consoleClr()
         resetpass()
         continue
+
+
+
+
+
+
+
+
+#Main
+foldername = os.path.abspath(pathname)
+
+f = open(foldername + "/version.json")
+
+data = json.load(f)
+
+print(data.get("version"))
+
+ACEversion = data.get("version")
+
+#TODO: Add check version via web server
+
+#mostver = 
+f.close()
+
+#if ACEversion ==
+
+
+
+
+
+
+
+
 
 
 

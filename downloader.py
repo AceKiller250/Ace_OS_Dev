@@ -48,6 +48,7 @@ def copy_url(task_id: TaskID, url: str, path: str) -> None:
     """Copy data from a url to a local file."""
     progress.console.log(f"Requesting {url}")
     response = urlopen(url)
+    progress.console.log(f"Downloading {url}")
     # This will break if the response doesn't contain content length
     progress.update(task_id, total=int(response.info()["Content-length"]))
     with open(path, "wb") as dest_file:
@@ -57,7 +58,7 @@ def copy_url(task_id: TaskID, url: str, path: str) -> None:
             progress.update(task_id, advance=len(data))
             if done_event.is_set():
                 return
-    progress.console.log(f"Downloaded {path}")
+    progress.console.log(f"Downloaded {path} from {url}")
 
 
 def download(urls: Iterable[str], dest_dir: str):
