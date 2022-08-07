@@ -2,6 +2,8 @@
 A rudimentary URL downloader (like wget or curl) to demonstrate Rich progress bars.
 """
 
+#TODO: Convert this to module for use in main login.py
+
 import os.path
 import sys
 from concurrent.futures import ThreadPoolExecutor

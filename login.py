@@ -157,7 +157,7 @@ def animated_marker():
 
 #Reset Password
 def resetpass():
-    print("Reseting Password")
+    print("Reseting Password...")
     print("Please Enter your Email Below: ")
     email = input("> ")
     animated_marker()
