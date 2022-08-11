@@ -38,8 +38,72 @@ firebase=pyrebase.initialize_app(firebaseConfig)
 auth=firebase.auth()
 
 
+#Define Proggresbar
+import progressbar
+
+def creating_account():
+        for i in tqdm(range(100),
+                  desc="Creating Account...",
+                  ascii=False, ncols=75):
+            time.sleep(0.01)
+
+def spinny_marker(text, delay):
+    widgets = [text + ":", progressbar.AnimatedMarker()]
+    bar = progressbar.ProgressBar(widgets=widgets).start()
+
+    for i in range(delay):
+        time.sleep(0.1)
+        bar.update(i)
+
+def loading_bar(text, load_delay):
+        for i in tqdm(range(load_delay),
+                  desc= text + "...",
+                  ascii=False, ncols=75):
+            time.sleep(0.01)
 
 
+#Main
+foldername = os.path.abspath(pathname)
+
+f = open(foldername + "/version.json")
+
+data = json.load(f)
+spinny_marker("Checking Version", 20)
+
+print(data.get("version"))
+
+ACEversion = data.get("version")
+
+#TODO: Add check version via web server
+
+#mostver = 
+f.close()
+
+#Get version from json file
+
+f = open(foldername + "/version.json")
+
+data = json.load(f)
+
+print(data.get("version"))
+
+#Get CurrentVersion from aceprints.co/version.json
+
+CurrentVersion = 0
+
+
+
+#Check if CurrentVersion is less than ACEversion
+
+
+
+if ACEversion <= CurrentVersion:
+    print("Version is up to date")
+else:
+    print("Version is not up to date")
+    time.sleep(2)
+    print("Attempting to Update...")
+    #TODO Check for newer version on website and download using downloader.py
 
 
 
@@ -133,14 +197,7 @@ def consoleClr():
 
 
 
-#Define Proggresbar
-import progressbar
 
-def creating_account():
-        for i in tqdm(range(100),
-                  desc="Creating Account...",
-                  ascii=False, ncols=75):
-            time.sleep(0.01)
 
 
 
@@ -298,28 +355,6 @@ while True:
 
 
 
-#Main
-foldername = os.path.abspath(pathname)
-
-f = open(foldername + "/version.json")
-
-data = json.load(f)
-
-print(data.get("version"))
-
-ACEversion = data.get("version")
-
-#TODO: Add check version via web server
-
-#mostver = 
-f.close()
-
-#if ACEversion ==
-
-
-
-
-
 
 
 
@@ -357,3 +392,8 @@ f.close()
 #            consoleClr()
 #        continue
 #    return
+
+
+
+
+#TODO: Game launcher
