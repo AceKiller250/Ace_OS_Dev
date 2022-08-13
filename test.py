@@ -1,5 +1,14 @@
-import downloader
+from mega import Mega
 
-file = "https://speed.hetzner.de/1GB.bin"
+mega = Mega()
 
-downloader.copy_url(file)
+
+m = mega.login("peytonanthony99@gmail.com", "fInrif-nywpo4-darwuj")
+# login using a temporary anonymous account
+
+
+file = m.upload('calcv3.py')
+print(m.get_upload_link(file))
+
+file = m.find('AceOS', exclude_deleted=True)
+m.download(file)

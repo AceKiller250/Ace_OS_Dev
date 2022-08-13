@@ -2,40 +2,59 @@ import os
 import sys
 import subprocess
 import time
+from sys import platform
+import requests
+import io
+from mediafire import MediaFireApi
+import json
+from mega import Mega
+
+mega = Mega()
+
+
 
 
 
 
 pathname = os.path.dirname(sys.argv[0])
 
+
 pyinstaller = str("pyinstaller --onefile ")
 
 
 
 
+if platform == "darwin":
+    # OS X
+    builtOS = pathname + "/login.pkg"
+elif platform == "win32":
+    # Windows...
+    builtOS = pathname + "/login.exe"
 
 
 
+def PublishOS():
+    #Get version from version.json
+    f = open(pathname + "/version.json")
+    data = json.load(f)
+    print(data.get("version"))
+    version = data.get(("version"))
+    print("Version: " + version)
+    print("Updating to new version...")
+    data.parse("version", version)
+PublishOS()
 print("Are you sure your ready to compile?[y/n]")
 ans = input("> ")
 if ans == "Y" or ans == "y":
     os.system(pyinstaller + "login.py")
+    ans = input("Do you want to compile the server?[y/n]")
+    if ans == "Y" or ans == "y":
+       PublishOS()
 else:
     print("Alright have fun coding")
     sys.exit()
 
 
-#with Progress() as progress:
-#
-#    task1 = progress.add_task("[red]Compiling choose script...", total=1000)
-#    task2 = progress.add_task("[green]Compiling login script...", total=1000)
-#    task3 = progress.add_task("[cyan]Compiling calc script...", total=1000)
-#
-#    while not progress.finished:
-#        progress.update(task1, choosecompile())
-#        progress.update(task2, logincompile())
-#        progress.update(task3, calccompile())
-#        time.sleep(0.02)
 
 
 

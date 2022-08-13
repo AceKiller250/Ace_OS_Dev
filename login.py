@@ -16,6 +16,14 @@ import sys
 import smtplib
 import socket
 import json
+import requests
+from mega import Mega
+
+
+
+
+mega = Mega()
+
 
 #File location and locater
 pathname = os.path.dirname(sys.argv[0])
@@ -76,7 +84,6 @@ ACEversion = data.get("version")
 
 #TODO: Add check version via web server
 
-#mostver = 
 f.close()
 
 #Get version from json file
@@ -89,21 +96,25 @@ print(data.get("version"))
 
 #Get CurrentVersion from aceprints.co/version.json
 
-CurrentVersion = 0
+LocalVersion = data.get("version")
 
-
+f.close()
 
 #Check if CurrentVersion is less than ACEversion
 
 
 
-if ACEversion <= CurrentVersion:
+if ACEversion >= LocalVersion:
     print("Version is up to date")
 else:
     print("Version is not up to date")
     time.sleep(2)
     print("Attempting to Update...")
     #TODO Check for newer version on website and download using downloader.py
+    url = requests.get("https://jsonplaceholder.typicode.com/users")
+    text = url.text
+    print(type(text))
+    sys.exit()
 
 
 
