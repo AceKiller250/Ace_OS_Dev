@@ -1,5 +1,8 @@
-fullpath = os.path.abspath(pathname)
+import os
+
 pathname = os.path.dirname(sys.argv[0]) 
+fullpath = os.path.abspath(pathname)
+
 
 # Import modules
 import time

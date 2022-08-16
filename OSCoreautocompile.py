@@ -7,9 +7,7 @@ import requests
 import io
 from mediafire import MediaFireApi
 import json
-from mega import Mega
 
-mega = Mega()
 
 
 

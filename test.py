@@ -1,14 +1,11 @@
-from mega import Mega
-
-mega = Mega()
+import dropbox
 
 
-m = mega.login("peytonanthony99@gmail.com", "fInrif-nywpo4-darwuj")
-# login using a temporary anonymous account
+dbx = dropbox.Dropbox('sl.BNXrKBZspW5v1uVCqDNkWQzjKmimdqucR4bYSlCZPDem26-50TRxPBjXpzEEqj0LUPfZh8GAFbX2yImKGUpd39SAqykI4lpdeQvR1sKqfvfMS3VdARYIHHJfaotgWT6spUfHLOk')
 
 
-file = m.upload('calcv3.py')
-print(m.get_upload_link(file))
+for entry in dbx.files_list_folder('').entries:
+    print(entry.name)
 
-file = m.find('AceOS', exclude_deleted=True)
-m.download(file)
+dbx.files_upload("TestFiles", "/Users/peytonfollosco/Documents/GitHub/Ace_OS_Dev/hello.txt")
+
