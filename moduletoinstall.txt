@@ -1,3 +1,7 @@
-pip install pipreqs
+pigar
 
-pipreqs /path/to/project
+# Generate requirements.txt for current directory.
+$ pigar
+
+# Generating requirements.txt for given directory in given file.
+$ pigar -p ../dev-requirements.txt -P ../
