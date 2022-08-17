@@ -89,7 +89,7 @@ def loading_bar(text, load_delay):
 #Main
 foldername = os.path.abspath(pathname)
 
-f = open(foldername + "/version.json")
+f = open(foldername + "/settings.json")
 
 data = json.load(f)
 spinny_marker("Checking Version", 20)
@@ -104,7 +104,7 @@ f.close()
 
 #Get version from json file
 
-f = open(foldername + "/version.json")
+f = open(foldername + "/settings.json")
 
 data = json.load(f)
 
@@ -237,13 +237,6 @@ def LauncherRun():
 
 
     while True:
-
-
-
-
-
-
-
 
 
         userchoice = ("")
