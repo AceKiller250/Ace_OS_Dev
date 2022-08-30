@@ -74,10 +74,14 @@ def download(urls: Iterable[str], dest_dir: str):
                 task_id = progress.add_task("download", filename=filename, start=False)
                 pool.submit(copy_url, task_id, url, dest_path)
 
+def downloadLink(url):
+    download(url, "./")
+
 
 if __name__ == "__main__":
     # Try with https://releases.ubuntu.com/20.04/ubuntu-20.04.3-desktop-amd64.iso
     if sys.argv[1:]:
+        print(sys.argv[1:])
         download(sys.argv[1:], "./")
     else:
         print("Usage:\n\tpython downloader.py URL1 URL2 URL3 (etc)")

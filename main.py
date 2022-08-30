@@ -1,13 +1,14 @@
 #Error Tracker
-import sentry_sdk
-sentry_sdk.init(
-    dsn="https://5082b3d9abac4d8db434b1da5b7bc811@o1362474.ingest.sentry.io/6653986",
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0
-)
+#TODO: Add error tracker when program is finished
+#import sentry_sdk
+#sentry_sdk.init(
+#    dsn="https://5082b3d9abac4d8db434b1da5b7bc811@o1362474.ingest.sentry.io/6653986",
+#
+#    # Set traces_sample_rate to 1.0 to capture 100%
+#    # of transactions for performance monitoring.
+#    # We recommend adjusting this value in production.
+#    traces_sample_rate=1.0
+#)
 
 
 #Import requirements
@@ -33,10 +34,51 @@ import requests
 import subprocess
 
 
+#Setup system settings and config
+if platform == "linux" or platform == "linux2":
+    #linux
+    gameExtension = None
+    print("Sorry, linux is currently not supported. Please check back at a later date or go to the github to get current status on linux version.")
+    sleep(2)
+    input("Press any key to continue...")
+    sys.exit()
+elif platform == "darwin":
+    # OS X
+    gameExtension = ".dmg"
+elif platform == "win32":
+    # Windows
+    gameExtension = ".exe"
+
+
+
+#Define clear console
+def consoleClr():
+    if platform == "linux" or platform == "linux2":
+        #linux
+        os.system("clear")
+    elif platform == "darwin":
+        # OS X
+        os.system("clear")
+    elif platform == "win32":
+        # Windows...
+        os.system("cls")
+
+
+
 #File location and locater
 pathname = os.path.dirname(sys.argv[0])
+if os.path.exists(pathname + "/games"):
+    ##Move on
+    print("Loading game directory...")
+    sleep(1)
+    print("File location loaded successfully.")
+else:
+    gamespath = os.path.join(pathname, "games")
+    print(gamespath)
+    os.makedirs(gamespath)
 
-#Configure and Connext to Firebase
+
+#Configure and Connect to Firebase
 
 firebaseConfig = {
     'apiKey': "AIzaSyCWtx40HpFVqzSejGiWNKgrvvvdCVN9Ms0",
@@ -54,7 +96,7 @@ firebase=pyrebase.initialize_app(firebaseConfig)
 auth=firebase.auth()
 
 
-
+#Sets up error handler 
 class error(Exception):
     pass
 
@@ -84,6 +126,28 @@ def loading_bar(text, load_delay):
                   desc= text + "...",
                   ascii=False, ncols=75):
             time.sleep(0.01)
+
+
+
+
+
+
+#setup download function
+
+
+
+from downloader import downloadLink
+downloadLink("https://speed.hetzner.de/1GB.bin")
+
+
+
+
+
+
+
+
+
+
 
 
 #Main
@@ -126,11 +190,12 @@ else:
     print("Version is not up to date")
     time.sleep(2)
     print("Attempting to Update...")
+    os.system("")
     #TODO Check for newer version on website and download using downloader.py
-    url = requests.get("https://jsonplaceholder.typicode.com/users")
-    text = url.text
-    print(type(text))
-    sys.exit()
+    #url = requests.get("https://jsonplaceholder.typicode.com/users")
+    #text = url.text
+    #print(type(text))
+    #sys.exit()
 
 
 
@@ -143,19 +208,15 @@ else:
 
 
 
-
-#Define clear console
-def consoleClr():
-    if platform == "linux" or platform == "linux2":
-        #linux
-        os.system("clear")
-    elif platform == "darwin":
-        # OS X
-        os.system("clear")
-    elif platform == "win32":
-        # Windows...
-        os.system("cls")
-
+def checkforFile(filename, folder):
+    for root, dirs, files in os.walk(pathname+"/"+folder, topdown=True):
+        for name in files:
+            print(os.path.join(root, name))
+            if name == filename:
+                return True
+        for name in dirs:
+            print(os.path.join(root, name))
+    return False
 
 
 
