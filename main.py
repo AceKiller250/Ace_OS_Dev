@@ -136,11 +136,8 @@ def loading_bar(text, load_delay):
 
 
 
-from downloader import downloadLink
-downloadLink("https://speed.hetzner.de/1GB.bin")
-
-
-
+#from downloader import downloadLink
+#downloadLink("https://speed.hetzner.de/1GB.bin")
 
 
 
@@ -492,7 +489,7 @@ def signup():
             auth.send_email_verification(user['idToken'])
             print("Account created! Please verify it with the email sent.")
             sleep(5)
-            ask=input("Do you want to login?[y/n]")
+            ask=input(f"Do you want to login?[y/n] \n")
             if ask=='y':
                 login()
             else:
@@ -501,11 +498,17 @@ def signup():
             error_json = e.args[1]
             error = json.loads(error_json)['error']['message']
             if error == "EMAIL_EXISTS":
-                print("Email already exists. Please login or use a different email.")
+                print(f"An account with the email of {email} already exists. Please login or use a different email.")
                 sleep(3)
+                print("Would you like to log in?[y/n]")
+                retunValue = input("> ")
+                if retunValue == 'y':
+                    login()
+                else:
+                    login()
                 signup()
             elif error == "WEAK_PASSWORD":
-                print("Password is too weak. Please create a stronger password.")
+                print(f"{password} is too weak of a password. Please create a stronger password.")
         print("If you are getting this message an error has occurred, please try again and if this persists then please contact AceKiller250 or a dev")
         return
 
