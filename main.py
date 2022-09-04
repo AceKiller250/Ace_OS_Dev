@@ -13,6 +13,7 @@
 
 #Import requirements
 from logging import exception
+from turtle import clear
 from urllib.error import HTTPError
 import pyrebase
 import os
@@ -32,6 +33,8 @@ import socket
 import json
 import requests
 import subprocess
+
+
 
 
 #Setup system settings and config
@@ -62,6 +65,19 @@ def consoleClr():
     elif platform == "win32":
         # Windows...
         os.system("cls")
+
+
+#Checks for any incompatiblity issues within the program (i.e. OS, bugs, etc...)
+if platform == "darwin":
+    print("MacOS is not fully supported. You can still login, signup, and reset your password but booting games does not work atm. Please check back at a later date or go to the github to check the status of MacOS")
+    sleep(5)
+    print("Would you like to continue?[y/n]")
+    macPauseAns = input("> ")
+    if macPauseAns == "y" or macPauseAns == "Y":
+        print("Continuing...")
+        consoleClr()
+    elif macPauseAns == "n" or macPauseAns == "N":
+        sys.exit()
 
 
 
@@ -95,6 +111,10 @@ firebaseConfig = {
 firebase=pyrebase.initialize_app(firebaseConfig)
 auth=firebase.auth()
 
+#storage = firebase.storage()
+# as admin
+#
+#storage.child("games/test.json").download("settings.json")
 
 #Sets up error handler 
 class error(Exception):
@@ -143,25 +163,43 @@ def loading_bar(text, load_delay):
 
 
 
+#TODO: 2/3 done. Change link to perma hosting and fix new download check
 
-
-
+from urllib.request import urlopen
+  
+# import json
+import json
+# store the URL in url as 
+# parameter for urlopen
+url = "https://firebasestorage.googleapis.com/v0/b/ace-os-auth.appspot.com/o/settings.json?alt=media&token=5287407f-f879-4680-964d-4932b34df67a"
+  
+# store the response of URL
+response = urlopen(url)
+  
+# storing the JSON response 
+# from url in data
+data_json = json.loads(response.read())
+  
+# print the json response
+print(data_json)
 
 #Main
 foldername = os.path.abspath(pathname)
 
-f = open(foldername + "/settings.json")
 
-data = json.load(f)
+
+
 spinny_marker("Checking Version", 20)
 
-print(data.get("version"))
+print(data_json.get("version"))
 
-ACEversion = data.get("version")
+currentVersion = data_json.get("current_version")
 
-#TODO: Add check version via web server
+data_json.close()
 
-f.close()
+
+
+
 
 #Get version from json file
 
@@ -181,7 +219,7 @@ f.close()
 
 
 
-if ACEversion >= LocalVersion:
+if currentVersion >= LocalVersion:
     print("Version is up to date")
 else:
     print("Version is not up to date")
