@@ -1,11 +1,17 @@
-import dropbox
-
-
-dbx = dropbox.Dropbox('sl.BNXrKBZspW5v1uVCqDNkWQzjKmimdqucR4bYSlCZPDem26-50TRxPBjXpzEEqj0LUPfZh8GAFbX2yImKGUpd39SAqykI4lpdeQvR1sKqfvfMS3VdARYIHHJfaotgWT6spUfHLOk')
-
-
-for entry in dbx.files_list_folder('').entries:
-    print(entry.name)
-
-dbx.files_upload("TestFiles", "/Users/peytonfollosco/Documents/GitHub/Ace_OS_Dev/hello.txt")
-
+from urllib.request import urlopen
+  
+# import json
+import json
+# store the URL in url as 
+# parameter for urlopen
+url = "https://firebasestorage.googleapis.com/v0/b/ace-os-auth.appspot.com/o/settings.json?alt=media&token=5287407f-f879-4680-964d-4932b34df67a"
+  
+# store the response of URL
+response = urlopen(url)
+  
+# storing the JSON response 
+# from url in data
+data_json = json.loads(response.read())
+  
+# print the json response
+print(data_json)

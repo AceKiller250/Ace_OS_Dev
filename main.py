@@ -70,7 +70,7 @@ def consoleClr():
 #Checks for any incompatiblity issues within the program (i.e. OS, bugs, etc...)
 if platform == "darwin":
     print("MacOS is not fully supported. You can still login, signup, and reset your password but booting games does not work atm. Please check back at a later date or go to the github to check the status of MacOS")
-    sleep(5)
+    sleep(2)
     print("Would you like to continue?[y/n]")
     macPauseAns = input("> ")
     if macPauseAns == "y" or macPauseAns == "Y":
@@ -165,6 +165,8 @@ def loading_bar(text, load_delay):
 
 #TODO: 2/3 done. Change link to perma hosting and fix new download check
 
+spinny_marker("Checking Version", 20)
+
 from urllib.request import urlopen
   
 # import json
@@ -181,19 +183,10 @@ response = urlopen(url)
 data_json = json.loads(response.read())
   
 # print the json response
-print(data_json)
-
+currentVersion = data_json["current_version"]
+print("Current Version: " + currentVersion)
 #Main
 foldername = os.path.abspath(pathname)
-
-
-
-
-spinny_marker("Checking Version", 20)
-
-print(data_json.get("version"))
-
-currentVersion = data_json.get("current_version")
 
 data_json.close()
 
@@ -207,11 +200,11 @@ f = open(foldername + "/settings.json")
 
 data = json.load(f)
 
-print(data.get("version"))
+print(data.get("launch_version"))
 
 #Get CurrentVersion from aceprints.co/version.json
 
-LocalVersion = data.get("version")
+LocalVersion = data.get("launch_version")
 
 f.close()
 
@@ -277,8 +270,6 @@ def animated_marker():
 
 
 
-
-
 #Temportary Launcher
 
 def LauncherRun():
@@ -301,8 +292,8 @@ def LauncherRun():
         mindustryserverpath = str(foldername + r"\mindustry" + r"\server" r"\run_server.bat")
         mindustryserverpath2 = str(foldername + r"\mindustry" + r"\server")
         os.startfile(mindustryserverpath)
-        print("I can only do so much for you :( So your going to have to do a few steps on your own to start the server. Please press windows key + r " +
-        "and in the new bar copy and paste " + mindustryserverpath2 + "in the new box. After that click run_server (Either one).")    
+        print(f"I can only do so much for you :( So your going to have to do a few steps on your own to start the server. Please press windows key + r " +
+        "and in the new bar copy and paste {mindustryserverpath2} in the new box. After that click run_server (Either one).")    
 
 
 
