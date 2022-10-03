@@ -165,65 +165,66 @@ def loading_bar(text, load_delay):
 
 #TODO: 2/3 done. Change link to perma hosting and fix new download check
 
-spinny_marker("Checking Version", 20)
-
-from urllib.request import urlopen
-  
-# import json
-import json
-# store the URL in url as 
-# parameter for urlopen
-url = "https://firebasestorage.googleapis.com/v0/b/ace-os-auth.appspot.com/o/settings.json?alt=media&token=5287407f-f879-4680-964d-4932b34df67a"
-  
-# store the response of URL
-response = urlopen(url)
-  
-# storing the JSON response 
-# from url in data
-data_json = json.loads(response.read())
-  
-# print the json response
-currentVersion = data_json["current_version"]
-print("Current Version: " + currentVersion)
-#Main
-foldername = os.path.abspath(pathname)
-
-data_json.close()
-
-
-
-
-
-#Get version from json file
-
-f = open(foldername + "/settings.json")
-
-data = json.load(f)
-
-print(data.get("launch_version"))
-
-#Get CurrentVersion from aceprints.co/version.json
-
-LocalVersion = data.get("launch_version")
-
-f.close()
-
-#Check if CurrentVersion is less than ACEversion
-
-
-
-if currentVersion >= LocalVersion:
-    print("Version is up to date")
-else:
-    print("Version is not up to date")
-    time.sleep(2)
-    print("Attempting to Update...")
-    os.system("")
-    #TODO Check for newer version on website and download using downloader.py
-    #url = requests.get("https://jsonplaceholder.typicode.com/users")
-    #text = url.text
-    #print(type(text))
-    #sys.exit()
+#spinny_marker("Checking Version", 20)
+#
+#
+#from urllib.request import urlopen
+#  
+## import json
+#import json
+## store the URL in url as 
+## parameter for urlopen
+#url = "https://firebasestorage.googleapis.com/v0/b/ace-os-auth.appspot.com/o/settings.json?alt=media&token=5287407f-f879-4680-964d-4932b34df67a"
+#  
+## store the response of URL
+#response = urlopen(url)
+#  
+## storing the JSON response 
+## from url in data
+#data_json = json.loads(response.read())
+#  
+## print the json response
+#currentVersion = data_json["current_version"]
+#print("Current Version: " + currentVersion)
+##Main
+#foldername = os.path.abspath(pathname)
+#
+#data_json.close()
+#
+#
+#
+#
+#
+##Get version from json file
+#
+#f = open(foldername + "/settings.json")
+#
+#data = json.load(f)
+#
+#print(data.get("launch_version"))
+#
+##Get CurrentVersion from aceprints.co/version.json
+#
+#LocalVersion = data.get("launch_version")
+#
+#f.close()
+#
+##Check if CurrentVersion is less than ACEversion
+#
+#
+#
+#if currentVersion >= LocalVersion:
+#    print("Version is up to date")
+#else:
+#    print("Version is not up to date")
+#    time.sleep(2)
+#    print("Attempting to Update...")
+#    os.system("")
+#    #TODO Check for newer version on website and download using downloader.py
+#    #url = requests.get("https://jsonplaceholder.typicode.com/users")
+#    #text = url.text
+#    #print(type(text))
+#    #sys.exit()
 
 
 
