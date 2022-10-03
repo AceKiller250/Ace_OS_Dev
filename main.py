@@ -11,7 +11,7 @@
 #)
 from update_check import update
 
-update(__file__, "https://raw.githubusercontent.com/AceKiller250/Ace_OS_Dev/main/main.py?token=GHSAT0AAAAAABYL34UF75Z5VZQCUBNTBYPKYZ2HPQA")
+update(__file__, "https://raw.githubusercontent.com/AceKiller250/Ace_OS_Dev/main/main.py")
 
 #Import requirements
 from logging import exception
