@@ -9,7 +9,9 @@
 #    # We recommend adjusting this value in production.
 #    traces_sample_rate=1.0
 #)
+from update_check import update
 
+update(__file__, "https://raw.githubusercontent.com/AceKiller250/Ace_OS_Dev/main/main.py?token=GHSAT0AAAAAABYL34UF75Z5VZQCUBNTBYPKYZ2HPQA")
 
 #Import requirements
 from logging import exception
