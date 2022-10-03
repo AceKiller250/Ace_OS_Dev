@@ -19,7 +19,7 @@ None! Just run the exe.
     
 ## Roadmap
 
-- Auto Updater
+- Improved Auto Updater
 
 - MacOS/Linux Support
 
